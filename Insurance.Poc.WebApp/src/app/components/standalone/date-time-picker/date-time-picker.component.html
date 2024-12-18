@@ -1,0 +1,75 @@
+<div class="input-group text-input">
+  <!--<div class="input-group-prepend" *ngIf="showLeftRightButtons === true" ngbTooltip="Previous Day" placement="left">
+    <button class="btn btn-sm btn-primary" (click)="datePrevious();"><i class="fas fa-chevron-left"></i></button>
+  </div>-->
+  <input
+    type="text"
+    [readonly]="disabled"
+    class="form-control form-control-sm"
+    [class.align-middle]="alignMiddle === true"
+    (ngModel)="(dateString)"
+    #input
+    container="body"
+    (change)="onInputChange($event)"
+    (ngModelChange)="onDateChange($event)"
+    (dateSelect)="onDateSelect($event)"
+    [firstDayOfWeek]="7"
+    autocomplete="off"
+    (click)="dateInputClick(d)"
+    ngbDatepicker
+    [footerTemplate]="t"
+    #d="ngbDatepicker"
+    value="{{ dateString | date: inputDatetimeFormat }}"
+  />
+
+  <!--<div class="input-group-append" *ngIf="showLeftRightButtons === true" ngbTooltip="Next Day" placement="right">
+    <button class="btn btn-sm btn-primary" (click)="dateNext();"><i class="fas fa-chevron-right"></i></button>
+  </div>-->
+
+  <span
+    *ngIf="dateString && showClear"
+    class="ng-clear-wrapper"
+    title="Clear all"
+    (click)="clear()"
+    style="z-index: 1; color: #999999 !important; position: absolute; right: 28px; top: 18%"
+    ><span aria-hidden="true" class="ng-clear">×</span></span
+  >
+  <div class="input-group-append" *ngIf="showPickerButton === true">
+    <button
+      class="btn btn-sm btn-secondary"
+      (click)="d.toggle()"
+      type="button"
+      [disabled]="disabled"
+      tabindex="-1"
+    >
+      <i class="fa fa-calendar"></i>
+    </button>
+    <!--<button class="btn btn-sm btn-reset" (click)="clear($event)" [disabled]="Disable">
+      <i class="fas fa-times"></i>
+    </button>-->
+  </div>
+</div>
+
+<ng-template #t>
+  <table>
+    <tr>
+      <td class="p-1">
+        <button (click)="nowClick(d)" class="btn btn-light btn-sm mb-1">Now</button><br />
+        <button (click)="tomorrowClick(d)" class="btn btn-light btn-sm mb-1">Tomorrow</button><br />
+        <button (click)="twoDays(d)" class="btn btn-light btn-sm mb-1">2 days time</button><br />
+        <button (click)="oneWeek(d)" class="btn btn-light btn-sm mb-1">1 Week</button>
+      </td>
+      <td>
+        <ngb-timepicker
+          #tp
+          name="timepicker"
+          [ngModel]="datetime"
+          (ngModelChange)="onTimeChange($event)"
+          [hourStep]="hourStep"
+          [minuteStep]="minuteStep"
+          [secondStep]="secondStep"
+        ></ngb-timepicker>
+      </td>
+    </tr>
+  </table>
+</ng-template>

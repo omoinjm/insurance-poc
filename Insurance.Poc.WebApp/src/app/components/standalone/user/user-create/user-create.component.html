@@ -1,0 +1,90 @@
+<ng-template #UserCreateTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title float-start">Create User</h4>
+    <button
+      type="button"
+      class="btn-close float-end"
+      aria-label="Close"
+      (click)="modalDialog.dismiss()"
+    ></button>
+  </div>
+
+  <form #form="ngForm" autocomplete="off">
+    <div class="modal-body rs-modal-content">
+      <div class="row g-0">
+        <div class="col-12">
+          <div class="row">
+            <div class="mb-3 col">
+              <label class="col-form-label">Email Address</label>
+              <label
+                class="pull-right form-error"
+                *ngIf="email.errors?.['pattern'] || email.errors?.['required']"
+                >Email Invalid</label
+              >
+              <input
+                name="emailAddress"
+                class="form-control form-control-sm"
+                #email="ngModel"
+                [(ngModel)]="ViewModel.emailAddress"
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z.]$"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col">
+              <label class="col-form-label">First Name</label>
+              <label class="pull-right form-error col" *ngIf="fname.errors?.['required']"
+                >Name Required</label
+              >
+              <input
+                name="firstName"
+                class="form-control form-control-sm"
+                #fname="ngModel"
+                [(ngModel)]="ViewModel.firstName"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col">
+              <label class="col-form-label">Surname</label>
+              <label class="pull-right form-error col" *ngIf="sname.errors?.['required']"
+                >Surname Required</label
+              >
+              <input
+                name="surname"
+                class="form-control form-control-sm"
+                #sname="ngModel"
+                [(ngModel)]="ViewModel.surname"
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer bg-light-gray">
+      <div class="me-auto"></div>
+      <button
+        type="button"
+        class="btn btn-primary btn-sm"
+        (click)="saveUser()"
+        [disabled]="!form.valid"
+      >
+        <i class="fa fa-check"></i> Save
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary btn-sm"
+        (click)="cancelClick()"
+        data-dismiss="modal"
+      >
+        <i class="fa fa-times"></i> Close
+      </button>
+    </div>
+  </form>
+</ng-template>

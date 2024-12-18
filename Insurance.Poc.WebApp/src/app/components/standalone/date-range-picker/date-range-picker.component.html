@@ -1,0 +1,42 @@
+<div class="input-group">
+  <input
+    type="text"
+    ngxDaterangepickerMd
+    [(ngModel)]="DateRange"
+    class="form-control form-control-sm rounded-0"
+    placeholder="Choose Date"
+    [locale]="locale"
+    [ranges]="ranges"
+    [alwaysShowCalendars]="AlwaysShowCalendar"
+    [opens]="Opens"
+    [drops]="Drops"
+    datepicker-append-to-body="true"
+    [showClearButton]="true"
+    [linkedCalendars]="LinkedCalendars"
+    style="max-width:{{ width }}"
+    (change)="changeEvent($event)"
+  />
+
+  <div class="input-group-append">
+    <button
+      class="btn btn-action btn-sm"
+      type="button"
+      data-toggle="tooltip"
+      title="Search"
+      (click)="searchClick()"
+      *ngIf="ShowSearch === true"
+    >
+      <i class="fas fa-search"></i>
+    </button>
+    <button
+      class="btn btn-clear btn-sm"
+      type="button"
+      data-toggle="tooltip"
+      title="Clear search results"
+      (click)="clearClick()"
+      *ngIf="ShowClear === true"
+    >
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</div>

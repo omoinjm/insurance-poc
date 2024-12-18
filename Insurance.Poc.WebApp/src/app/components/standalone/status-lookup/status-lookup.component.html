@@ -1,0 +1,93 @@
+<ng-select
+  [items]="Items"
+  bindLabel="{{ BindLabel }}"
+  bindValue="{{ BindValue }}"
+  groupBy="{{ groupBy }}"
+  (blur)="onBlur($event)"
+  [(ngModel)]="val"
+  [clearable]="clearable"
+  [disabled]="disabled"
+  appendTo="{{ appendTo }}"
+  style="text-align: left; width:{{ width }}"
+  (change)="onValueChange($event)"
+  (focus)="onTouched($event)"
+>
+  <ng-template
+    ng-option-tmp
+    let-item="item"
+    let-index="index"
+    let-search="searchTerm"
+    style="text-align: left"
+  >
+    <div *ngIf="item.Id >= 0">
+      <i class="fa fa-circle" style="color:{{ item.Colour }}"></i> {{ item.Name }}
+    </div>
+    <div *ngIf="item.Id === -1">
+      <a href="" (click)="showNewItemDialogClick()"><i class="fa fa-plus"></i> New Item</a>
+    </div>
+  </ng-template>
+
+  <ng-template ng-label-tmp let-item="item" style="text-align: left">
+    <i class="fa fa-circle" style="color:{{ item.Colour }}"></i> {{ item.Name }}
+  </ng-template>
+</ng-select>
+
+<ng-template #newItemDialog>
+  <div class="modal-header">
+    <h4 class="modal-title float-start">New Item</h4>
+    <button
+      type="button"
+      class="btn-close float-end"
+      aria-label="Close"
+      (click)="modalDialog.dismiss()"
+      tabindex="-1"
+    ></button>
+  </div>
+
+  <div class="modal-body">
+    <div class="mb-3">
+      <label for="exampleInputEmail1">Name</label>
+      <input
+        [autofocus]="true"
+        type="text"
+        class="form-control"
+        id="inputTitle"
+        [(ngModel)]="newItem.Name"
+        name="inputTitle"
+        aria-describedby="emailHelp"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="newJobTitle">Colour</label>
+
+      <div class="input-group">
+        <input
+          [(colorPicker)]="newItem.Colour"
+          name="Colour"
+          [(ngModel)]="newItem.Colour"
+          class="form-control"
+          [style.background]="newItem.Colour"
+        />
+        <!--<button class="btn btn-primary btn-sm"><i class="fa fa-random" (click)="generateColour()"></i></button>-->
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="newJobTitle">Fore Colour</label>
+      <input
+        [(colorPicker)]="newItem.ForeColour"
+        name="ForeColour"
+        [(ngModel)]="newItem.ForeColour"
+        class="form-control"
+        [style.background]="newItem.ForeColour"
+      />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-action" (click)="save()">
+      <i class="fa fa-check"></i> Save
+    </button>
+    <button type="button" class="btn btn-reset" (click)="modalDialog.dismiss()">
+      <i class="fa fa-times"></i> Close
+    </button>
+  </div>
+</ng-template>

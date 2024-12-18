@@ -1,0 +1,80 @@
+{
+   "name": "Insurance POC dev container",
+   "dockerFile": "Dockerfile",
+   "context": "..",
+   "workspaceFolder": "/workspaces/insurance-poc",
+   "postCreateCommand": "bash .devcontainer/scripts/post-create-commands.sh",
+   "postAttachCommand": "bash .devcontainer/scripts/post-attach-commands.sh",
+   "features": {
+      // "ghcr.io/devcontainers/features/dotnet:1": {
+      //    "version": "8.0"
+      // },
+      // "ghcr.io/devcontainers/features/github-cli:1": {},
+      // "ghcr.io/devcontainers-contrib/features/angular-cli:2": {
+      //    "version": "14.2.9"
+      // },
+      // "ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {}
+   },
+   "forwardPorts": [
+      // .NET ports
+      5000,
+      5001,
+      5087,
+      8081,
+      8080,
+      7149,
+      45795,
+      // Angular ports
+      4200,
+      4201,
+      4433,
+      8080,
+      9876
+   ],
+   "customizations": {
+      "vscode": {
+         "settings": {
+            "terminal.integrated.shell.linux": "/bin/bash",
+            "workbench.colorTheme": "Andromeda",
+            "workbench.iconTheme": "material-icon-theme",
+            "git.decorations.enabled": true,
+            "git.autofetch": true,
+            "git.confirmSync": false,
+            "git.enableSmartCommit": true,
+            "dotnet.preferCSharpExtension": false,
+            "dotnet.defaultSolution": "Insurance.Poc.sln" // Set your solution here
+         },
+         "extensions": [
+            "dbaeumer.vscode-eslint",
+            "esbenp.prettier-vscode",
+            "ms-dotnettools.csdevkit",
+            "ms-dotnettools.csharp",
+            "ms-azuretools.vscode-bicep",
+            "ms-azuretools.vscode-docker",
+            "github.copilot",
+            "github.codespaces",
+            "hermitter.oh-lucy-vscode",
+            "pkief.material-icon-theme",
+            // Angular extensions
+            "devondcarew.bazel-code",
+            "dsznajder.es7-react-js-snippets",
+            "ms-vscode.vscode-typescript-tslint-plugin"
+         ]
+      }
+   },
+   "runArgs": [
+      "--env-file",
+      ".devcontainer/.env",
+      "--privileged"
+   ],
+   "mounts": [
+      // .NET mounts
+      // "source=${localWorkspaceFolder}/..,target=/workspaces,type=bind,consistency=cached",
+      "source=${localEnv:USERPROFILE}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
+      "source=insurance-poc-bashhistory,target=/commandhistory,type=volume",
+      // Angular mounts
+      // Linux path (remove for windows)
+      "source=/home/omoi/development/omoi/insurance-poc/Insurance.Poc.WebApp,target=/usr/src/app,type=bind"
+   ],
+   "remoteUser": "root"
+}

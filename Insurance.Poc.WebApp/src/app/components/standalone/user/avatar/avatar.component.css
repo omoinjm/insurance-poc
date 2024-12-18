@@ -1,0 +1,36 @@
+.circle {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.avatar-sm {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 10px;
+}
+
+.avatar-md {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+}
+
+.avatar-lg {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+}
+
+.avatar-xl {
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+  font-size: 20px;
+}

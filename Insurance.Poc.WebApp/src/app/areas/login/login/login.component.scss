@@ -1,0 +1,38 @@
+@import "../../../../assets/scss/_base.scss";
+
+body {
+  background: $primary-color !important;
+  background: linear-gradient(to right, #0062e6, #33aeff);
+  height: 100vh !important;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+
+.btn-forgot-password {
+  color: white !important;
+  background-color: #ea4335;
+}
+
+.btn-reset-password {
+  color: white !important;
+  background-color: #3b5998;
+}
+
+.insurify-text {
+  font-family: 'Arial', sans-serif; /* Set the font family */
+  font-size: 5rem; /* Adjust the font size */
+  font-weight: bold; /* Make the text bold */
+  color: #333; /* Set a dark color for the text */
+  letter-spacing: 2px; /* Increase spacing between letters */
+  text-transform: uppercase; /* Make the text uppercase */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.insurify-text:hover {
+  color: #FFD43B; /* Change the color on hover */
+  text-decoration: underline; /* Add an underline on hover */
+}

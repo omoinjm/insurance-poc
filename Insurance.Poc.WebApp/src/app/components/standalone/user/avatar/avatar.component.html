@@ -1,0 +1,9 @@
+<div
+  class="circle text-uppercase avatar-{{ Size }}"
+  style="background-color: {{ Colour }};color:white;"
+  ngbTooltip="{{ FullName || (ShortCode === '??' ? UnknownTitle : UnknownTitle) }}"
+  container="body"
+  placement="top"
+>
+  {{ ShortCode || '??' }}
+</div>

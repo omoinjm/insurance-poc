@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ title }}</h4>
+  <button
+    type="button"
+    class="btn-close float-end"
+    tabindex="-1"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+
+<div class="modal-body">
+  <table>
+    <tr>
+      <td style="padding: 10px">
+        <i class="fa fa-question ico-question" style="font-size: 42px"></i>
+      </td>
+      <td style="padding: 10px">
+        <span class="dialog-message">
+          {{ message }}
+        </span>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="modal-footer">
+  <button
+    type="button"
+    tabindex="-1"
+    class="btn btn-success"
+    (click)="yesClick(); activeModal.close('Close click')"
+  >
+    <i class="fa fa-check"></i> Yes
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    (click)="noClick(); activeModal.close('Close click')"
+  >
+    <i class="fa fa-ban"></i> No
+  </button>
+</div>

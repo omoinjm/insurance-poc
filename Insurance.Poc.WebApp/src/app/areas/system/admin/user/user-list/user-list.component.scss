@@ -1,0 +1,23 @@
+@import "../../../../../../assets/scss/_base.scss";
+
+body {
+  background: $primary-color !important;
+  background: linear-gradient(to right, #0062e6, #33aeff);
+  height: 100vh !important;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+
+.btn-forgot-password {
+  color: white !important;
+  background-color: #ea4335;
+}
+
+.btn-reset-password {
+  color: white !important;
+  background-color: #3b5998;
+}

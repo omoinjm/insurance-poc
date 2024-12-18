@@ -1,0 +1,9 @@
+.md-drppicker {
+  z-index: 9999 !important;
+  overflow: auto;
+}
+
+ngx-daterangepicker-material {
+  z-index: 9999 !important;
+  overflow: auto;
+}

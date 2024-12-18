@@ -1,0 +1,76 @@
+<!--<div class="input-group">
+  <input class="form-control form-control-sm" (change)="onInputChange($event)" (blur)="inputBlur($event)" (dateSelect)="onDateSelect($event)" autocomplete="off"
+         name="datePickerControl" (ngModel)="dateString" ngbDatepicker #d="ngbDatepicker" value="{{dateString}}">
+
+<div class="input-group-append">
+  <button class="btn btn-sm btn-secondary" (click)="d.toggle()" type="button" [disabled]="Disable"><i class="fa fa-calendar"></i></button>
+  <button class="btn btn-sm btn-reset" (click)="clear($event)" [disabled]="Disable">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+</div>-->
+
+<div class="input-group text-input">
+  <div
+    class="input-group-prepend"
+    *ngIf="showLeftRightButtons === true"
+    ngbTooltip="Previous Day"
+    placement="left"
+  >
+    <button class="btn btn-sm btn-primary" (click)="datePrevious()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  </div>
+  <input
+    type="text"
+    [readonly]="Disable"
+    class="form-control form-control-sm"
+    [class.align-middle]="alignMiddle === true"
+    (ngModel)="(dateString)"
+    (keyup.enter)="onInputChange($event)"
+    #input
+    (change)="onInputChange($event)"
+    (blur)="inputBlur($event)"
+    (dateSelect)="onDateSelect($event)"
+    [firstDayOfWeek]="7"
+    autocomplete="off"
+    (click)="dateInputClick(d)"
+    ngbDatepicker
+    #d="ngbDatepicker"
+    value="{{ dateString }}"
+  />
+
+  <div
+    class="input-group-append"
+    *ngIf="showLeftRightButtons === true"
+    ngbTooltip="Next Day"
+    placement="right"
+  >
+    <button class="btn btn-sm btn-primary" (click)="dateNext()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <span
+    *ngIf="dateString && showClear"
+    class="ng-clear-wrapper"
+    title="Clear all"
+    (click)="clear()"
+    style="z-index: 1; color: #999999 !important; position: absolute; right: 4px; top: 4px"
+    ><span aria-hidden="true" class="ng-clear">×</span></span
+  >
+  <div class="input-group-append" *ngIf="showPickerButton === true">
+    <button
+      class="btn btn-sm btn-secondary"
+      (click)="d.toggle()"
+      type="button"
+      [disabled]="Disable"
+      tabindex="-1"
+    >
+      <i class="fa fa-calendar"></i>
+    </button>
+    <!--<button class="btn btn-sm btn-reset" (click)="clear($event)" [disabled]="Disable">
+      <i class="fas fa-times"></i>
+    </button>-->
+  </div>
+</div>

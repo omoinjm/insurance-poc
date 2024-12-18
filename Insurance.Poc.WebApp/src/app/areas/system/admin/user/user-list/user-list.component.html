@@ -1,0 +1,93 @@
+<app-user-create #UserCreateComponent (OnSave)="refresh()"></app-user-create>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="d-flex" role="search">
+        <button type="submit" class="btn btn-sm btn-primary" (click)="createUser()">
+          <i class="fa fa-plus"></i> Create
+        </button>
+      </form>
+
+      <form class="ms-auto d-flex" role="search">
+        <input class="form-control form-control-sm me-2" type="search" name="search" [(ngModel)]="Criteria.search"
+          placeholder="Search" aria-label="Search" />
+        <button class="btn btn-sm btn-secondary" (click)="refresh()" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="row list-table-height">
+  <div class="col">
+    <table class="list-table">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th></th>
+          <th>First Name</th>
+          <th>Surname</th>
+          <th>Email Address</th>
+          <th>Created Date</th>
+          <th style="width: 115px">Last Logged In</th>
+        </tr>
+      </thead>
+
+      <tr class="filter-row">
+        <td>
+          <app-select-single-lookup #userStatusLookup [TableName]="'ui_user_status'" [Name]="'status'" [Id]="'id'"
+            (OnInitEmitter)="initialiseLookup('id')"
+            (OnChangeEmitter)="onChangeLookup($event,'id');"></app-select-single-lookup>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tbody>
+        <tr class="cursor-pointer" *ngFor="let a of ViewModel?.data" (click)="edit(a.id)">
+          <td class="p-2">
+            <!-- <div *ngIf="a.isActive === true">
+              <i class="fa fa-circle" style="color: green"></i>
+            </div>
+            <div *ngIf="a.isActive === false">
+              <i class="fa fa-circle" style="color: red"></i>
+            </div> -->
+            <span class="badge" [ngStyle]="{'background-color': a.userStatusColor, 'color': '#fff'}">
+              <i class="{{a.userStatusSymbol}}"></i> {{a.userStatusName}}
+            </span>
+          </td>
+
+          <td>
+            <app-avatar [ShortCode]="a.shortCode" [FullName]="a.displayName" [Colour]="'#337ab7'"></app-avatar>
+          </td>
+          <td>{{ a.name }}</td>
+          <td>{{ a.surname }}</td>
+
+          <td>{{ a.email }}</td>
+
+          <td>{{ formatDate(a.createdAt) }}</td>
+          <td>{{ formatDate(a.loginDate) }}</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="ViewModel?.count === 0 && IsLoading === false">
+        <tr>
+          <td colspan="10" class="text-center border-bottom-0">
+            <h4 class="mt-5 mb-5">
+              <i class="fa fa-exclamation-triangle me-2"></i>No results found
+            </h4>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-paging [AllCriteria]="Criteria" #Pager (PagingEmitter)="refresh($event)"></app-paging>

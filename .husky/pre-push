@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+cd Chronodesk.Admin.Web/
+
+# JM: Still in progress
+# npm run test

@@ -1,0 +1,28 @@
+.text-input .ng-clear-wrapper {
+  cursor: pointer;
+  position: relative;
+  width: 17px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+  .text-input .ng-clear-wrapper .ng-clear {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .text-input .ng-clear-wrapper:hover .ng-clear {
+    color: #D0021B;
+  }
+
+.text-input input {
+  /*background-color: white !important;*/
+}
+
+.text-input button:focus {
+  box-shadow: none !important;
+}
