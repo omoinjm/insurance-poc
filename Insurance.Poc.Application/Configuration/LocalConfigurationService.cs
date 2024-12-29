@@ -9,6 +9,7 @@ public class LocalConfigurationService(IConfiguration configuration) : IConfigur
 
     public string ConnectionString()
     {
-        return _configuration.GetValue<string>("ConnectionString:PostgresConnectionString")!;
+        return _configuration.GetValue<string>("ConnectionString:POSTGRES_CONNECTION_STRING")
+            ?? Environment.GetEnvironmentVariable("POSTGRES_CONNECTION_STRING")!;
     }
 }

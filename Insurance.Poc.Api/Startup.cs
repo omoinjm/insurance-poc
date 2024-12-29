@@ -79,10 +79,20 @@ public class Startup(IConfiguration configuration, IWebHostEnvironment env)
             });
 
         });
+
         services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
         {
-            builder.WithOrigins("http://localhost:4200", "http://localhost:4201").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+            builder
+                .WithOrigins(
+                    "http://localhost:4200",
+                    "http://localhost:4201",
+                    "http://127.0.0.1:4200" // Add this line
+                )
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
         }));
+
         services.AddMemoryCache();
         services.AddControllers();
         services.AddApiVersioning();

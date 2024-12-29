@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using Insurance.Poc.Application.Commands.General;
 using Insurance.Poc.Application.Queries.General;
 using Insurance.Poc.Application.Responses.General;

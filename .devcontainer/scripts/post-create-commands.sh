@@ -1,7 +1,7 @@
 # Check for required environment variables
 : "${GIT_USER_EMAIL:?Need to set GIT_USER_EMAIL}"
 : "${GIT_USER_NAME:?Need to set GIT_USER_NAME}"
-# : "${DOTNET_PROJECT_PATH:?Need to set DOTNET_PROJECT_PATH}"
+: "${DOTNET_PROJECT_PATH:?Need to set DOTNET_PROJECT_PATH}"
 
 wget https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb && \
 dpkg -i packages-microsoft-prod.deb && \
@@ -27,9 +27,9 @@ git config --global user.email "$GIT_USER_EMAIL" &&
 git config --global user.name "$GIT_USER_NAME"
 
 # .NET config
-# dotnet restore "$DOTNET_PROJECT_PATH" || { echo "Dotnet restore failed"; exit 1; }
-# dotnet clean "$DOTNET_PROJECT_PATH" || { echo "Dotnet clean failed"; exit 1; }
-# dotnet build "$DOTNET_PROJECT_PATH" || { echo "Dotnet build failed"; exit 1; }
+dotnet restore "$DOTNET_PROJECT_PATH" || { echo "Dotnet restore failed"; exit 1; }
+dotnet clean "$DOTNET_PROJECT_PATH" || { echo "Dotnet clean failed"; exit 1; }
+dotnet build "$DOTNET_PROJECT_PATH" || { echo "Dotnet build failed"; exit 1; }
 
 # Angular config
 chmod -R 775 /usr/src/app
