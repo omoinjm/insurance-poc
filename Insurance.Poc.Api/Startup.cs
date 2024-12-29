@@ -84,6 +84,7 @@ public class Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             builder
                 .WithOrigins(
+                    "https://insurance-poc-ecru.vercel.app",
                     "http://localhost:4200",
                     "http://localhost:4201",
                     "http://127.0.0.1:4200" // Add this line
