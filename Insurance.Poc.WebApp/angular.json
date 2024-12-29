@@ -15,12 +15,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          // "builder": "@angular-devkit/build-angular:browser",
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "customWebpackConfig": {
               "path": "src/custom-webpack.config.ts"
             },
+            "allowedCommonJsDependencies": [
+              "moment",
+              "dayjs"
+            ],
             "outputPath": "dist/insurance.poc.webapp",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -55,8 +58,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -84,7 +87,6 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          // "builder": "@angular-devkit/build-angular:dev-server",
           "builder": "@angular-builders/custom-webpack:dev-server",
           "configurations": {
             "production": {

@@ -1,0 +1,75 @@
+@import "_utilities.scss";
+
+.btn-action {
+  color: $color-btn-grey;
+  background-color: $color-primary;
+  border-color: $btn-action-border;
+}
+
+.btn-action:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: $color-primary-light-1;
+  border-color: $btn-action-border;
+}
+
+.btn-primary {
+  color: $color-btn-grey !important;
+  background-color: $color-primary !important;
+  border-color: $btn-action-border !important;
+}
+
+.btn-primary:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+  background-color: $color-primary-light-1 !important;
+  border-color: $btn-action-border !important;
+}
+
+
+.btn-clear {
+  border-color: #9c9c9c;
+  color: #9c9c9c;
+}
+
+
+.btn-reset {
+  color: $color-btn-grey;
+  background-color: #8f8f8f;
+  border-color: #8d8d8d;
+}
+
+.btn-reset:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #9c9c9c;
+  border-color: #8f8f8f;
+}
+
+.btn-close {
+  font-size: 0.70rem !important;
+  font-weight: 60000;
+}
+
+.btn-close:focus {
+  outline: 0;
+  box-shadow: none !important;
+  opacity: none;
+}
+
+/*Toggle button */
+
+.mat-slide-toggle-thumb:before {
+  display: none !important;
+}
+.mat-slide-toggle-bar {
+  display: none !important;
+}
+
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-bar {
+  background-color: rgba(67, 160, 71, .54) !important;
+}
+
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-thumb {
+  background-color: #43a047 !important;
+}

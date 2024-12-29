@@ -1,0 +1,125 @@
+/*This is for declaring all our global variables. Import this file into other style sheets if needed*/
+
+/*SIDEBAR*/
+$sidebar-width:200px;
+$sidebar-border: 1px solid rgba(255, 255, 255, 0.1);
+$sidebar-font-size: 16px;
+$sidebar-font-weight: 600;
+$sidebar-font-weight-active: 800;
+$sidebar-font-submenu-size: 14px;
+$sidebar-font-submenu-weight: 500;
+$sidebar-left-padding: 20px;
+$sidebar-bgcolor: #2376bc;
+$sidebar-bgcolor-active: #003152;
+$sidebar-bgcolor-hover: #045077;
+$sidebar-fgcolor: #d3d3d3;
+$sidebar-fgcolor-active: #ffffff;
+$sidebar-icon-width:35px;
+$sidebar-icon-font-weight:400;
+
+$sidebar-active-bg: #0062A3;
+$sidebar-header-active-bg: #045077;
+
+$menu-hightlight: #4ec1e4;
+
+$body-color: #183247;
+
+$cl-green:#e3e149;
+$cl-lightblue:#4ec1e4;
+
+// Light Shades
+$color-primary-light-1: #0062A3;
+$color-primary-light-2: #006EB8;
+$color-primary-light-3: #007ACC;
+$color-primary-light-4: #0087E0;
+
+// Dark Shades
+$color-primary-dark-1: #00497A;
+$color-primary-dark-2: #003D66;
+$color-primary-dark-3: #003D66;
+$color-primary-dark-4: #003152;
+
+
+// Grays
+$color-gray-1: #424242;
+$color-gray-2: #a3a3a3;
+$color-gray-3: #c9c9c9;
+$color-gray-4: #d6d6d6;
+$color-gray-5: #e0e0e0;
+$color-gray-6: #ebebeb;
+$color-gray-7: #f5f5f5;
+
+
+/*GENERAL*/
+$font-family: Roboto,"Helvetica Neue",sans-serif;
+$font-weight: 600;
+$font-size: 13px;
+$table-font-size: 13px;
+$color-primary: #023047;
+$color-primary-border: #14234b;
+$color-secondary: #d34626;
+$color-secondary-border: #d34626;
+$color-tertiary: #2376bc;
+$color-tertiary-border: #2376bc;
+$color-gray: #404041;
+$nav-height: 54px;
+$nav-bgcolor: #14234b;  
+/*$nav-bgcolor: #404041;*/
+$nav-fgcolor: #ffffff;
+$nav-text-weight: 600;
+
+
+$off-white: #f7f7f7;
+$off-white-border: #ebebeb;
+$blue: #2376bc;
+$orange: #f49b2d;
+$green: #56a84d;
+$gray: #646464;
+$red: #b71515;
+$mustard-yellow: #fca311;
+
+
+/* With Top Bar */
+/*$content-height: calc(100vh - 50px);*/
+
+/* Without Top Bar */
+$content-height: calc(100vh);
+
+/*TABLES*/
+$table-list-th-bgcolor: #c4c4c4;
+$table-list-th-bgcolor-light: #ebebeb;
+$table-list-th-fgcolor: #000000;
+$table-list-tr-hover: rgba(35, 118, 188, 0.10);
+$table-list-tr-active: rgba(35, 118, 188, 0.56);
+
+
+$off-white: #f7f7f7;
+$off-white-border: #ebebeb;
+
+$blue: #2376bc;
+$green: #8ac14d;
+$red: #d34626;
+
+
+// ======================
+// TABS
+// =====================
+$tab-container-background: #02283C;
+$tab-background: #045077;
+$tab-foreground: #ebebeb;
+$tab-active-background: #fff;
+$tab-hover-background: #0062A3;
+// ========================
+// Buttons
+// =========================
+$color-btn-grey: #ebebeb;
+$btn-back-border: #0f213e;
+$btn-action-border: #2d6fa8;
+
+
+// ========================
+// Gantt
+// =========================
+$gantt-row-height:32px;
+$gantt-row-height-content: 31px;
+$gantt-task-item-height: 28px;

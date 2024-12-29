@@ -1,0 +1,621 @@
+@import "_utilities.scss";
+
+.list-table {
+  font-family: $font-family;
+  font-size: $table-font-size;
+  width: 100%;
+  border-spacing: 0px 0px;
+  border-collapse: separate;
+}
+
+.list-table tr.active a:link, .list-table tr.active a:visited {
+  color: $off-white !important;
+}
+
+.list-table thead a:link, .list-table thead a:visited {
+  text-decoration: none;
+  color: $body-color !important;
+}
+
+.table-full-width{
+    width:100%;
+}
+
+
+//==============================
+// List Table
+// =============================
+
+.list-table th {
+  height: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: $table-list-th-bgcolor;
+  color: $table-list-th-fgcolor;
+  font-weight: normal;
+  border-bottom: solid 0px #b4b4b4 !important;
+}
+
+.list-table thead tr{
+    margin:0;
+    padding:0;
+    border:none;
+}
+
+.list-table td {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: $table-font-size;
+}
+
+.list-table tbody tr:hover {
+  background-color: $table-list-tr-hover;
+}
+
+.list-table tr.selected {
+  background-color: #045077 !important;
+  color: #fff;
+}
+
+.list-table tr.selected a:link, .list-table tr.selected a:visited {
+  color: #fff;
+}
+
+
+//==============================
+// Report Table
+// =============================
+.report-table{
+    width:100%;
+
+}
+.report-table th {
+  height: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: $table-list-th-bgcolor-light;
+  color: $table-list-th-fgcolor;
+  font-weight: bold;
+  border-bottom: solid 0px #b4b4b4 !important;
+}
+
+.report-table thead tr {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.report-table td {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: $table-font-size;
+}
+
+.report-table tbody tr:hover {
+  background-color: $table-list-tr-hover;
+}
+
+.report-table tr.selected {
+  background-color: #045077 !important;
+  color: #fff;
+}
+
+.report-table tr.selected a:link, .list-table tr.selected a:visited {
+  color: #fff;
+}
+
+
+.filter-row {
+  background-color: #f2f2f2;
+  border-bottom:solid 1px #c7c7c7 !important;
+}
+
+.filter-row td {
+  background-color: #f2f2f2;
+  border-bottom: solid 1px #c7c7c7 !important;
+}
+
+
+
+/*.list-table tr:active {
+  background-color: $table-list-tr-active;
+}*/
+
+
+.list-table-row {
+  background-color: #f7f7f7;
+  //width:1000px; JB: not sure why I put this here
+  
+}
+
+.list-table-row td {
+  border-bottom: 2px solid #fff !important;
+}
+
+
+.inline-edit {
+  border: none;
+  background-color: #f7f7f7;
+  width: auto;
+  right: 0;
+  padding: 4px;
+}
+
+
+.fg-blue, .blue{
+    color:$blue;
+}
+
+.bg-blue {
+  background-color: $blue;
+}
+
+.bg-orange {
+  background-color: $orange;
+}
+
+.bg-heat-1 {
+  background-color: #006400;
+}
+
+.bg-heat-2 {
+  background-color: #F9DC5C;
+}
+
+.bg-heat-3 {
+  background-color: #FFD100;
+}
+
+.bg-heat-4 {
+  background-color: #F77F00;
+}
+
+.bg-heat-5 {
+  background-color: #F77F00;
+}
+
+.bg-heat-6 {
+  background-color: #DC2F02;
+}
+
+.bg-heat-7 {
+  background-color: #9D0208;
+}
+
+.bg-prog-1 {
+  background-color: #FF0000;
+}
+
+.bg-prog-2 {
+  background-color: #FFA500;
+}
+
+.bg-prog-3 {
+  background-color: #FFFF00;
+}
+
+.bg-prog-4 {
+  background-color: #008000;
+}
+
+.bg-prog-5 {
+  background-color: #0000FF;
+}
+
+.bg-prog-6 {
+  background-color: #4B0082;
+}
+
+.bg-prog-7 {
+  background-color: #EE82EE;
+}
+
+
+.table-fixed-header {
+  /*JB: Holy fucking shit, part one of fixed headers*/
+  position: relative;
+}
+
+.table-fixed-header th {
+  /*JB: Holy fucking shit, part two of fixed headers*/
+  position: sticky;
+  top: 0;
+  z-index:999;
+}
+
+//==============================
+// Grid Table
+// =============================
+.grid-table{
+    width:100%;
+}
+
+.grid-table tbody td {
+  border: solid 0.5px $table-list-th-bgcolor-light;
+  padding:5px;
+}
+
+.grid-table thead th {
+  height: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: $table-list-th-bgcolor-light;
+  color: $table-list-th-fgcolor;
+  font-weight: normal;
+  border-bottom: solid 0px #b4b4b4 !important;
+  font-size: 14px;
+}
+
+
+
+//==============================
+// Activity Table
+// =============================
+.activity-table {
+  /*JB: Holy fucking shit, part one of fixed headers*/
+  position: relative;
+}
+
+.activity-table td {
+  font-size: 12px !important;
+}
+
+.title-td {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.activity-table th {
+  /*JB: Holy fucking shit, part two of fixed headers*/
+  position: sticky;
+  top: 0;
+}
+
+.activity-table button {
+  font-size: 12px !important;
+}
+
+.activity-table-td-small{
+    width:80px !important;
+}
+
+/*.activity-table th a:link, .activity-table th a:visited {
+*/
+.column-header {
+  color: $color-primary;
+  font-weight: bold;
+}
+
+
+//==============================
+// Financial Table
+// =============================
+.fin-table {
+  border: solid 0.5px $table-list-th-bgcolor-light;
+  font-size:12px;
+}
+
+.fin-table thead th {
+  height: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: $table-list-th-bgcolor-light;
+  color: $table-list-th-fgcolor;
+  font-weight: normal;
+  border-bottom: solid 0px #b4b4b4 !important;
+  font-size: 14px;
+}
+
+
+
+.fin-table .form-control {
+  border: none;
+  font-size: 12px;
+}
+
+.fin-table .ng-select-container {
+  border: none;
+  font-size: 12px;
+}
+
+.fin-table tbody td {
+  border: solid 0.5px $table-list-th-bgcolor-light;
+  padding: 5px;
+}
+
+.fin-table tfoot td{
+    font-weight:bold;
+    padding:5px;
+    background-color:#f2f2f2;
+}
+
+.fin-table tr.delete,
+.fin-table tr.delete td .form-control,
+.fin-table tr.delete td .ng-select-container {
+  color: $red !important;
+  text-decoration: line-through !important;
+  font-weight: bold;
+}
+
+
+
+//==============================
+// WBS Table
+// =============================
+.wbs-table {
+  width: 100%;
+  position: relative;
+}
+
+.wbs-table th {
+  height: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: $table-list-th-bgcolor;
+  color: $table-list-th-fgcolor;
+  font-weight: bold;
+  border-bottom: solid 0px #b4b4b4 !important;
+  position: sticky;
+  top: 0;
+  z-index:3 !important;
+}
+
+
+.wbs-table .title-input{
+    width:100%;
+}
+
+.wbs-table .hours-input{
+
+}
+
+.wbs-table-row{
+
+}
+
+//==============================
+// Project Plan Table
+// =============================
+.projectplan-table {
+  width: 100%;
+  position: relative;
+}
+
+.projectplan-table th {
+  height: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: $table-list-th-bgcolor;
+  color: $table-list-th-fgcolor;
+  font-weight: bold !important;
+  border-bottom: solid 0.5px #b4b4b4 !important;
+  position: sticky;
+  top: 0;
+  z-index: 3 !important;
+}
+
+
+.th-title {
+}
+
+.th-hours{
+    width:100px;
+
+}
+
+.th-user{
+    width:250px;
+}
+
+.th-category {
+  width: 250px;
+}
+
+.th-status{
+    width:120px;
+}
+
+.title-table {
+  width: 100%;
+}
+//==============================
+// Activity List
+// =============================
+.td-xs {
+  width: 50px;
+}
+
+.td-xs2 {
+  width: 35px;
+}
+
+.td-small {
+  width: 80px;
+}
+
+.td-med {
+  width: 160px;
+}
+
+.td-large {
+  width: 200px;
+}
+
+.td-xl {
+  width: 400px;
+}
+
+
+.activity-list {
+  width: 100%;
+}
+
+.activity-list-tbody {
+}
+
+.activity-list-tr {
+   
+}
+
+.activity-list-td {
+  display: inline-flex;
+}
+
+.activity-list-tr-header {
+}
+
+.activity-list-group-header {
+  background-color: $color-gray-6;
+}
+
+.activity-list-th {
+  display: inline-flex;
+  height: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: $table-list-th-bgcolor;
+  color: $table-list-th-fgcolor;
+  font-weight: $font-weight;
+}
+
+.activity-list-exp {
+  width: 400px;
+}
+
+.td-status{
+   // border-left-width:3px;
+   // border-left-style:solid;
+}
+
+
+
+// ==========================================
+// Capture Table
+// ==========================================
+.capture-table{
+    width:100%;
+}
+
+.capture-table td .form-control{
+    border:none;
+}
+
+.capture-table tbody tr{
+    border-bottom:1px solid $color-gray-6;
+}
+
+.capture-table thead tr{
+    background-color:$color-gray-6;
+}
+
+.capture-table thead tr th{
+    padding:3px;
+}
+
+.capture-table textarea{
+    
+}
+
+
+
+// ==========================================
+// Day Select Table
+// ==========================================
+.table-day-select{
+    width:100%;
+}
+
+.table-day-select td a{
+    width:100%;
+}
+
+//==============================
+// Job List
+// =============================
+.job-table-client-header {
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #dcdcdc;
+  
+}
+
+.job-table-client-header td {
+  padding: 7px !important;
+}
+//==============================
+// Job Table
+// =============================
+.job-table {
+}
+
+
+// ==========================================
+// Simple Table
+// ==========================================
+.simple-table{
+    width:100%;
+}
+
+.simple-table thead tr{
+
+}
+
+
+
+// ==========================================
+// Simple Table
+// ==========================================
+.document-table{
+    width:100%;
+}
+
+.document-table th {
+  font-weight: bold;
+  padding: 2px;
+}
+
+.document-table td {
+    padding:2px;
+}
+
+
+// ==========================================
+// Kanban Totals
+// ==========================================
+.table-kanban-totals{
+    margin:0 !important;
+}
+
+.table-kanban-totals th {
+  padding: 2px;
+  color: #4a4a4a;
+  font-weight:500;
+}
+
+.table-kanban-totals td {
+  padding: 2px;
+  color: #4a4a4a;
+}
+
+.sticky-1 {
+  position: sticky;
+  z-index: 1;
+}
+
+.table-list-filter {
+  top: 35px;
+}
