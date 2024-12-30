@@ -1,38 +1,59 @@
-@import "../../../../assets/scss/_base.scss";
+@import '../../../../assets/scss/_base.scss';
 
 body {
-  background: $primary-color !important;
-  background: linear-gradient(to right, #0062e6, #33aeff);
-  height: 100vh !important;
+	background: $primary-color !important;
+	background: linear-gradient(to right, #0062e6, #33aeff);
+	height: 100vh !important;
 }
 
 .btn-login {
-  font-size: 0.9rem;
-  letter-spacing: 0.05rem;
-  padding: 0.75rem 1rem;
+	font-size: 0.9rem;
+	letter-spacing: 0.05rem;
+	padding: 0.75rem 1rem;
 }
 
 .btn-forgot-password {
-  color: white !important;
-  background-color: #ea4335;
+	color: white !important;
+	background-color: #ea4335;
 }
 
 .btn-reset-password {
-  color: white !important;
-  background-color: #3b5998;
+	color: white !important;
+	background-color: #3b5998;
 }
 
 .insurify-text {
-  font-family: 'Arial', sans-serif; /* Set the font family */
-  font-size: 5rem; /* Adjust the font size */
-  font-weight: bold; /* Make the text bold */
-  color: #333; /* Set a dark color for the text */
-  letter-spacing: 2px; /* Increase spacing between letters */
-  text-transform: uppercase; /* Make the text uppercase */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-}
+	font-family: 'Arial', sans-serif;
+	font-size: 5rem; /* Base font size */
+	font-weight: bold;
+	color: #333;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	transition: all 0.3s ease;
 
-.insurify-text:hover {
-  color: #FFD43B; /* Change the color on hover */
-  text-decoration: underline; /* Add an underline on hover */
+	&:hover {
+		color: #ffd43b;
+		text-decoration: underline;
+	}
+
+	// Responsive styles
+	@media (max-width: 1200px) {
+		font-size: 4rem; /* Reduce font size for large screens */
+		letter-spacing: 1.5px; /* Adjust letter spacing */
+	}
+
+	@media (max-width: 992px) {
+		font-size: 3.5rem; /* Reduce font size for medium screens */
+		letter-spacing: 1.2px;
+	}
+
+	@media (max-width: 768px) {
+		font-size: 3rem; /* Reduce font size for tablets */
+		letter-spacing: 1px;
+	}
+
+	@media (max-width: 576px) {
+		font-size: 2.5rem; /* Reduce font size for small screens */
+		letter-spacing: 0.8px;
+	}
 }
