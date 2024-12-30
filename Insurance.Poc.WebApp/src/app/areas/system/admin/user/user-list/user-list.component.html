@@ -2,24 +2,29 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="d-flex" role="search">
-        <button type="submit" class="btn btn-sm btn-primary" (click)="createUser()">
-          <i class="fa fa-plus"></i> Create
+    <div class="navbar-collapse d-flex align-items-center" id="navbarSupportedContent">
+      <!-- Create Button -->
+      <form class="d-flex me-3" role="search">
+        <button type="submit" class="btn btn-primary d-flex align-items-center btn-sm btn-md-md" (click)="createUser()">
+          <i class="p-1 fa fa-plus"></i>
+          <span class="d-none d-md-inline ms-1">Create</span>
         </button>
       </form>
 
-      <form class="ms-auto d-flex" role="search">
+
+      <!-- Search Form -->
+      <form class="d-flex ms-auto" role="search">
         <input class="form-control form-control-sm me-2" type="search" name="search" [(ngModel)]="Criteria.search"
-          placeholder="Search" aria-label="Search" />
+          placeholder="Search" aria-label="Search" (keydown.enter)="refresh()" />
         <button class="btn btn-sm btn-secondary" (click)="refresh()" type="submit">Search</button>
       </form>
     </div>
+
   </div>
 </nav>
 
@@ -30,11 +35,11 @@
         <tr>
           <th>Status</th>
           <th></th>
-          <th>First Name</th>
-          <th>Surname</th>
+          <th class="d-none d-md-table-cell">First Name</th>
+          <th class="d-none d-md-table-cell">Surname</th>
           <th>Email Address</th>
-          <th>Created Date</th>
-          <th style="width: 115px">Last Logged In</th>
+          <th class="d-none d-md-table-cell">Created Date</th>
+          <th class="d-none d-md-table-cell">Last Logged In</th>
         </tr>
       </thead>
 
@@ -45,37 +50,31 @@
             (OnChangeEmitter)="onChangeLookup($event,'id');"></app-select-single-lookup>
         </td>
         <td></td>
+        <td class="d-none d-md-table-cell"></td>
+        <td class="d-none d-md-table-cell"></td>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td class="d-none d-md-table-cell"></td>
+        <td class="d-none d-md-table-cell"></td>
       </tr>
 
       <tbody>
         <tr class="cursor-pointer" *ngFor="let a of ViewModel?.data" (click)="edit(a.id)">
           <td class="p-2">
-            <!-- <div *ngIf="a.isActive === true">
-              <i class="fa fa-circle" style="color: green"></i>
-            </div>
-            <div *ngIf="a.isActive === false">
-              <i class="fa fa-circle" style="color: red"></i>
-            </div> -->
             <span class="badge" [ngStyle]="{'background-color': a.userStatusColor, 'color': '#fff'}">
-              <i class="{{a.userStatusSymbol}}"></i> {{a.userStatusName}}
+              <i class="{{a.userStatusSymbol}}"></i> {{ a.userStatusName }}
             </span>
           </td>
 
           <td>
             <app-avatar [ShortCode]="a.shortCode" [FullName]="a.displayName" [Colour]="'#337ab7'"></app-avatar>
           </td>
-          <td>{{ a.name }}</td>
-          <td>{{ a.surname }}</td>
+          <td class="d-none d-md-table-cell">{{ a.name }}</td>
+          <td class="d-none d-md-table-cell">{{ a.surname }}</td>
 
           <td>{{ a.email }}</td>
 
-          <td>{{ formatDate(a.createdAt) }}</td>
-          <td>{{ formatDate(a.loginDate) }}</td>
+          <td class="d-none d-md-table-cell">{{ formatDate(a.createdAt) }}</td>
+          <td class="d-none d-md-table-cell">{{ formatDate(a.loginDate) }}</td>
         </tr>
       </tbody>
       <tbody *ngIf="ViewModel?.count === 0 && IsLoading === false">
