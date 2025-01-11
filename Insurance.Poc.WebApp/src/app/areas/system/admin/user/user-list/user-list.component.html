@@ -2,42 +2,43 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
-
     <div class="navbar-collapse d-flex align-items-center" id="navbarSupportedContent">
       <!-- Create Button -->
       <form class="d-flex me-3" role="search">
-        <button type="submit" class="btn btn-primary d-flex align-items-center btn-sm btn-md-md" (click)="createUser()">
+        <button
+          type="submit"
+          class="btn btn-primary d-flex align-items-center btn-sm btn-md-md"
+          (click)="createUser()"
+        >
           <i class="p-1 fa fa-plus"></i>
           <span class="d-none d-md-inline ms-1">Create</span>
         </button>
       </form>
 
-
       <!-- Search Form -->
       <form class="d-flex ms-auto" role="search">
-        <input class="form-control form-control-sm me-2" type="search" name="search" [(ngModel)]="Criteria.search"
-          placeholder="Search" aria-label="Search" (keydown.enter)="refresh()" />
+        <input
+          class="form-control form-control-sm me-2"
+          type="search"
+          name="search"
+          [(ngModel)]="Criteria.search"
+          placeholder="Search"
+          aria-label="Search"
+          (keydown.enter)="refresh()"
+        />
         <button class="btn btn-sm btn-secondary" (click)="refresh()" type="submit">Search</button>
       </form>
     </div>
-
   </div>
 </nav>
 
 <div class="row list-table-height">
   <div class="col">
     <table class="list-table">
-      <thead>
+      <thead class="bg-light">
         <tr>
           <th>Status</th>
-          <th></th>
-          <th class="d-none d-md-table-cell">First Name</th>
-          <th class="d-none d-md-table-cell">Surname</th>
-          <th>Email Address</th>
+          <th class="d-none d-md-table-cell">Name</th>
           <th class="d-none d-md-table-cell">Created Date</th>
           <th class="d-none d-md-table-cell">Last Logged In</th>
         </tr>
@@ -45,14 +46,16 @@
 
       <tr class="filter-row">
         <td>
-          <app-select-single-lookup #userStatusLookup [TableName]="'ui_user_status'" [Name]="'status'" [Id]="'id'"
+          <app-select-single-lookup
+            #userStatusLookup
+            [TableName]="'ui_user_status'"
+            [Name]="'status'"
+            [Id]="'id'"
             (OnInitEmitter)="initialiseLookup('id')"
-            (OnChangeEmitter)="onChangeLookup($event,'id');"></app-select-single-lookup>
+            (OnChangeEmitter)="onChangeLookup($event, 'id')"
+          ></app-select-single-lookup>
         </td>
-        <td></td>
         <td class="d-none d-md-table-cell"></td>
-        <td class="d-none d-md-table-cell"></td>
-        <td></td>
         <td class="d-none d-md-table-cell"></td>
         <td class="d-none d-md-table-cell"></td>
       </tr>
@@ -60,19 +63,29 @@
       <tbody>
         <tr class="cursor-pointer" *ngFor="let a of ViewModel?.data" (click)="edit(a.id)">
           <td class="p-2">
-            <span class="badge" [ngStyle]="{'background-color': a.userStatusColor, 'color': '#fff'}">
-              <i class="{{a.userStatusSymbol}}"></i> {{ a.userStatusName }}
+            <span
+              class="badge rounded-pill d-inline"
+              [ngStyle]="{
+                'background-color': a.userStatusColor,
+                color: '#fff',
+              }"
+            >
+              <i class="{{ a.userStatusSymbol }}"></i> {{ a.userStatusName }}
             </span>
           </td>
-
           <td>
-            <app-avatar [ShortCode]="a.shortCode" [FullName]="a.displayName" [Colour]="'#337ab7'"></app-avatar>
+            <div class="d-flex align-items-center">
+              <app-avatar
+                [ShortCode]="a.shortCode"
+                [FullName]="a.displayName"
+                [Colour]="'#337ab7'"
+              ></app-avatar>
+              <div class="ms-3">
+                <p class="fw-bold mb-1">{{ a.name }} {{ a.surname }}</p>
+                <p class="text-muted mb-0">{{ a.email }}</p>
+              </div>
+            </div>
           </td>
-          <td class="d-none d-md-table-cell">{{ a.name }}</td>
-          <td class="d-none d-md-table-cell">{{ a.surname }}</td>
-
-          <td>{{ a.email }}</td>
-
           <td class="d-none d-md-table-cell">{{ formatDate(a.createdAt) }}</td>
           <td class="d-none d-md-table-cell">{{ formatDate(a.loginDate) }}</td>
         </tr>
@@ -89,4 +102,5 @@
     </table>
   </div>
 </div>
+
 <app-paging [AllCriteria]="Criteria" #Pager (PagingEmitter)="refresh($event)"></app-paging>

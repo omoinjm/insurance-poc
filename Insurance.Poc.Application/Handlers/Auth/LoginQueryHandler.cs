@@ -10,39 +10,51 @@ using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Insurance.Poc.Application.Handlers.Base;
+using Insurance.Poc.Application.Responses.Application;
 
 namespace Insurance.Poc.Application.Handlers.Auth;
 
-public class LoginQueryHandler(IConfiguration configuration, IUserRepository userRepository, ICachingInMemoryService cachingInMemoryService) : IRequestHandler<CreateLoginCommand, ResponseLogin>
+public class LoginQueryHandler(IConfiguration configuration, IUserRepository userRepository, ICachingInMemoryService cachingInMemoryService)
+    : HandlerBase, IRequestHandler<CreateLoginCommand, BaseResponse>
 {
     private readonly IConfiguration _configuration = configuration;
     private readonly IUserRepository _userRepository = userRepository;
     private readonly ICachingInMemoryService _cachingInMemoryService = cachingInMemoryService;
 
-    public async Task<ResponseLogin> Handle(CreateLoginCommand request, CancellationToken cancellationToken)
+    public ResponseLogin Data = new();
+
+    public async Task<BaseResponse> Handle(CreateLoginCommand request, CancellationToken cancellationToken)
     {
-        UserEntity? existingUser = await _userRepository.GetUserByEmail(request.Email)
-            ?? throw new ArgumentException("The provided email or username is invalid.", nameof(request.Email));
+        var existingUser = await _userRepository.GetUserByEmail(request.Email);
+        if (existingUser == null)
+            Data.MessageList.Add("The provided email or username is invalid."); Data.Success = false;
 
-        // JM: We don't have salted & hashed password in the db
-        // if (!(request.Password == existingUser.Password)) throw new UnauthorizedAccessException("Password is incorrect.");
+        bool isPasswordVerified = CryptoUtil.VerifyPassword(request.Password, existingUser?.Salt!, existingUser?.Password!);
+        if (!isPasswordVerified)
+            Data.MessageList.Add("Password is incorrect."); Data.Success = false;
 
-        // TODO: Create salted & hashed field in database
-        bool isPasswordVerified = CryptoUtil.VerifyPassword(request.Password, existingUser.Salt, existingUser.Password);
+        Data = MapResponseLogin(existingUser!, GenerateJwtToken(existingUser!));
 
-        if (!isPasswordVerified) throw new UnauthorizedAccessException("Password is incorrect.");
+        SetUserInCache(existingUser!, Data);
 
-        List<Claim> claimList =
-        [
+        await _userRepository.UpdateUser(existingUser!);
+
+        return SuccessResponse(Data, 0, true, "Logged in successfully!");
+    }
+
+    #region Helper methods
+    private string GenerateJwtToken(UserEntity existingUser)
+    {
+        var claimList = new List<Claim>
+        {
             new Claim(ClaimTypes.Name, existingUser.Email!),
-            new Claim(ClaimTypes.Role, existingUser.Role!),
-        ];
+            new Claim(ClaimTypes.Role, existingUser.Role!)
+        };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecretKey"]!));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         var expireDate = DateTime.UtcNow.AddDays(1);
-        var expiryDate = DateTime.Now.AddDays(1);
-        int timeStamp = DateUtil.ConvertToTimeStamp(expireDate);
 
         var token = new JwtSecurityToken(
             claims: claimList,
@@ -51,32 +63,31 @@ public class LoginQueryHandler(IConfiguration configuration, IUserRepository use
             signingCredentials: creds
         );
 
-        var responseLogin = new ResponseLogin
-        {
-            Success = true,
-            UserId = existingUser.Id,
-            Role = existingUser.Role!,
-            Username = existingUser.Username!,
-            Email = existingUser.Email!,
-            Token = new JwtSecurityTokenHandler().WriteToken(token),
-            ExpireDate = expiryDate,
-            TimeStamp = timeStamp
-        };
-
-        //set the user with token and expiry date
-        existingUser.Token = responseLogin.Token;
-        existingUser.ExpiryDateTime = expiryDate;
-        existingUser.LoginTimeStamp = DateTime.Now;
-        existingUser.UpdatedBy = $"{existingUser.Name} {existingUser.Surname}";
-
-        _cachingInMemoryService.Set<string>("token", existingUser.Token, TimeSpan.FromDays(1));
-        _cachingInMemoryService.Set<int?>("loggedInUserId", existingUser.Id, TimeSpan.FromDays(1));
-
-        _cachingInMemoryService.Set<ResponseLogin>(existingUser.Token, responseLogin, TimeSpan.FromDays(1));
-
-        //update the user with token and expiry date
-        await _userRepository.UpdateUser(existingUser);
-
-        return responseLogin;
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
+
+    private ResponseLogin MapResponseLogin(UserEntity existingUser, string token)
+    {
+        var expiryDate = DateTime.Now.AddDays(1);
+        int timeStamp = DateUtil.ConvertToTimeStamp(expiryDate);
+
+        Data.UserId = existingUser.Id;
+        Data.Role = existingUser.Role ?? string.Empty;
+        Data.Username = existingUser.Username ?? string.Empty;
+        Data.Email = existingUser.Email ?? string.Empty;
+        Data.Token = token;
+        Data.ExpireDate = expiryDate;
+        Data.TimeStamp = timeStamp;
+
+        return Data;
+    }
+
+
+    private void SetUserInCache(UserEntity existingUser, ResponseLogin responseLogin)
+    {
+        _cachingInMemoryService.Set("token", responseLogin.Token, TimeSpan.FromDays(1));
+        _cachingInMemoryService.Set("loggedInUserId", existingUser.Id, TimeSpan.FromDays(1));
+        _cachingInMemoryService.Set(responseLogin.Token, responseLogin, TimeSpan.FromDays(1));
+    }
+    #endregion
 }

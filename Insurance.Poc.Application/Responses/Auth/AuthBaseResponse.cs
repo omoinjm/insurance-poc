@@ -1,10 +1,16 @@
+using System.Text.Json.Serialization;
+
 namespace Insurance.Poc.Application.Responses.Auth;
 
-public class BaseResponse
+public class AuthBaseResponse
 {
+    [JsonIgnore]
     public bool Success { get; set; }
+
+    [JsonIgnore]
     public List<string> MessageList { get; set; }
-    public BaseResponse()
+
+    public AuthBaseResponse()
     {
         MessageList = [];
     }

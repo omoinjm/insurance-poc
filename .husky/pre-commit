@@ -3,4 +3,4 @@
 
 cd Insurance.Poc.WebApp/
 
-# npm run pretty-quick
+npm run pretty-quick

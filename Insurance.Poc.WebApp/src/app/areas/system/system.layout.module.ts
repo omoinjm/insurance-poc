@@ -37,11 +37,15 @@ const routes: Routes = [
       {
         path: 'admin',
         loadChildren: () =>
-          import('../system/admin/admin.layout.module').then(
-            (m) => m.AdminLayoutModule,
-          ),
+          import('../system/admin/admin.layout.module').then((m) => m.AdminLayoutModule),
         canActivate: [AuthGuard],
-      }
+      },
+      {
+        path: 'broker',
+        loadChildren: () =>
+          import('../system/broker/broker.layout.module').then((m) => m.BrokerLayoutModule),
+        canActivate: [AuthGuard],
+      },
     ],
   },
 ];
@@ -59,9 +63,9 @@ const routes: Routes = [
     StatusLookupComponent,
     DatePickerComponent,
     DateRangePickerComponent,
-    ToastrModule
+    ToastrModule,
   ],
   providers: [AuthGuard],
   exports: [RouterModule, ColorPickerModule],
 })
-export class SystemLayoutModule { }
+export class SystemLayoutModule {}

@@ -5,6 +5,10 @@
 @import '@ng-select/ng-select/themes/default.theme.css';
 @import 'ngx-toastr/toastr';
 
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
 .form-check {
   display: block;
   min-height: 1.5rem;

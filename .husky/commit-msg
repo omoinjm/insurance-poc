@@ -3,4 +3,4 @@
 
 cd Insurance.Poc.WebApp/
 
-# npm run lint
+npm run lint

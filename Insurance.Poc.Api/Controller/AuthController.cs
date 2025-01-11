@@ -1,5 +1,6 @@
 using System.Net;
 using Insurance.Poc.Application.Commands.Users.IdentityCommands;
+using Insurance.Poc.Application.Responses.Application;
 using Insurance.Poc.Application.Responses.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -15,14 +16,14 @@ public class AuthController(IMediator mediator, ILogger logger) : ApiController
     [AllowAnonymous]
     [HttpPost]
     [Route("Login")]
-    [ProducesResponseType(typeof(ResponseLogin), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(BaseResponse), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> Login(CreateLoginCommand requestLogin)
     {
         _logger.LogInformation($"Login by {requestLogin.Email}");
 
         var result = await _mediator.Send(requestLogin);
 
-        _logger.LogInformation($"Login result for {requestLogin.Email} {result.Success}");
+        _logger.LogInformation($"Login result for {requestLogin.Email} {result.SuccessMessage}");
 
         return Ok(result);
     }
